@@ -29,6 +29,11 @@ TYPO3:
             label: 'Publication Date'
             group: 'page'
             reloadOnChange: true
+          author:
+            type: string
+            label: 'Author'
+            group: 'page'
+            reloadOnChange: true
           relatedPosts:
             type: string
             label: 'Related Posts'
