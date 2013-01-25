@@ -18,6 +18,7 @@ TYPO3:
         label: 'Blog Post'
         icon: 'Images/Icons/White/doc_empty_icon-16.png'
         darkIcon: 'Images/Icons/Black/doc_empty_icon-16.png'
+        uriPattern: "'blog/' + str_replace('-', '/', node.getProperty('datePublished')) + '/' + node.name"
         groups:
           page:
             label: 'Blog Post'
@@ -85,3 +86,4 @@ TYPO3:
         superTypes: ['TYPO3.Neos.ContentTypes:Plugin']
         label: 'Blog Post Overview'
         group: 'Plugins'
+        showUneditableOverlay: false

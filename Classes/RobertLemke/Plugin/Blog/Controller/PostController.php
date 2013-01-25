@@ -38,29 +38,35 @@ class PostController extends ActionController {
 	protected $nodeRepository;
 
 	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\TYPO3CR\Domain\Service\ContentTypeManager
+	 */
+	protected $contentTypeManager;
+
+	/**
 	 * List action for this controller. Displays latest posts
 	 *
 	 * @return void
 	 */
 	public function indexAction() {
 		$currentNode = $this->nodeRepository->getContext()->getCurrentNode();
-		$posts = array();
-		$counter = 0;
-		foreach ($currentNode->getChildNodes() as $yearNode) {
-			foreach ($yearNode->getChildNodes() as $monthNode) {
-				foreach ($monthNode->getChildNodes() as $dayNode) {
-					foreach ($dayNode->getChildNodes() as $postNode) {
-						$posts[] = $postNode;
-						$counter ++;
-						if ($counter > 15) {
-							break 4;
-						}
-					}
-				}
-			}
-		}
+		$q = new \TYPO3\Eel\FlowQuery\FlowQuery(array($currentNode));
+		$posts = $q->children('[instanceof RobertLemke.Plugin.Blog:Post]');
+
 		$this->view->assign('posts', $posts);
 	}
 
+	public function createAction() {
+		$currentNode = $this->nodeRepository->getContext()->getCurrentNode();
+		$postNode = $currentNode->createNode(uniqid('post-'), $this->contentTypeManager->getContentType('RobertLemke.Plugin.Blog:Post'));
+		$mainRequest = $this->request->getMainRequest();
+		$mainUriBuilder = new \TYPO3\Flow\Mvc\Routing\UriBuilder();
+		$mainUriBuilder->setRequest($mainRequest);
+		$uri = $mainUriBuilder
+			->reset()
+			->setCreateAbsoluteUri(TRUE)
+			->uriFor('show', array('node' => $postNode));
+		$this->redirectToUri($uri);
+	}
 }
 ?>
