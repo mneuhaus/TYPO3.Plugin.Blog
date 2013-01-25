@@ -39,21 +39,6 @@ class CommentController extends ActionController {
 	protected $contentTypeManager;
 
 	/**
-	 * @Flow\Inject
-	 * @var \RobertLemke\Akismet\Service
-	 */
-	protected $akismetService;
-
-	/**
-	 * Initialize the Akismet service
-	 *
-	 * @return void
-	 */
-	public function initializeAction() {
-		$this->akismetService->setCurrentRequest($this->request->getHttpRequest());
-	}
-
-	/**
 	 * Creates a new comment
 	 *
 	 * @param \TYPO3\TYPO3CR\Domain\Model\NodeInterface $postNode The post node which will contain the new comment
@@ -68,10 +53,6 @@ class CommentController extends ActionController {
 		$commentNode->setProperty('emailAddress', $newComment->getEmailAddress());
 		$commentNode->setProperty('datePublished', new \DateTime());
 		$commentNode->setProperty('spam', FALSE);
-
-		if ($this->akismetService->isCommentSpam('', $newComment->getContent(), 'comment', $newComment->getAuthor(), $newComment->getEmailAddress())) {
-			$commentNode->setProperty('spam', TRUE);
-		}
 
 		$this->addFlashMessage('Your new comment was created.');
 		$this->emitCommentCreated($commentNode, $postNode);

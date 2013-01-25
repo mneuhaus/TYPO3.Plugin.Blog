@@ -6,7 +6,6 @@
 	"require":{
 		"typo3/flow":"*",
 		"typo3/swiftmailer": "*",
-		"robertlemke/akismet":"*",
 		"typo3/neos":"dev-master"
 	},
 	"autoload":{
