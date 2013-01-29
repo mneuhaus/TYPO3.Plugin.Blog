@@ -1,12 +1,12 @@
 #
 # Make sure that if the section of a page needs to be rendered which in fact is
-# a Post node, use the RobertLemke.Plugin.Blog:Post TypoScript object to render
+# a Post node, use the TYPO3.Plugin.Blog:Post TypoScript object to render
 # that part instead of the default content collection rendering
 #
 
 prototype(TYPO3.Neos.ContentTypes:Section).blogPost {
-	condition = ${q(node).is('[instanceof RobertLemke.Plugin.Blog:Post]')}
-	type = 'RobertLemke.Plugin.Blog:Post'
+	condition = ${q(node).is('[instanceof TYPO3.Plugin.Blog:Post]')}
+	type = 'TYPO3.Plugin.Blog:Post'
 }
 
 #
@@ -31,9 +31,9 @@ prototype(TYPO3.Neos:Section).blogPost < prototype(TYPO3.Neos.ContentTypes:Secti
 # through the TypoScript collection feature.
 #
 
-prototype(RobertLemke.Plugin.Blog:Post) < prototype(TYPO3.TypoScript:Template)
-prototype(RobertLemke.Plugin.Blog:Post) {
-	templatePath = 'resource://RobertLemke.Plugin.Blog/Private/Templates/TypoScript/Post.html'
+prototype(TYPO3.Plugin.Blog:Post) < prototype(TYPO3.TypoScript:Template)
+prototype(TYPO3.Plugin.Blog:Post) {
+	templatePath = 'resource://TYPO3.Plugin.Blog/Private/Templates/TypoScript/Post.html'
 	title = ${q(node).property('title')}
 	author = ${q(node).property('author')}
 	datePublished = ${q(node).property('datePublished')}
@@ -62,9 +62,9 @@ prototype(RobertLemke.Plugin.Blog:Post) {
 # Blog Comment is rendered by a vanilla Template-based TypoScript object
 #
 
-prototype(RobertLemke.Plugin.Blog:Comment) < prototype(TYPO3.TypoScript:Template)
-prototype(RobertLemke.Plugin.Blog:Comment) {
-	templatePath = 'resource://RobertLemke.Plugin.Blog/Private/Templates/TypoScript/Comment.html'
+prototype(TYPO3.Plugin.Blog:Comment) < prototype(TYPO3.TypoScript:Template)
+prototype(TYPO3.Plugin.Blog:Comment) {
+	templatePath = 'resource://TYPO3.Plugin.Blog/Private/Templates/TypoScript/Comment.html'
 	text = ${q(node).property('text')}
 }
 
@@ -73,9 +73,9 @@ prototype(RobertLemke.Plugin.Blog:Comment) {
 # TypoScript object is a regular Plugin content type.
 #
 
-prototype(RobertLemke.Plugin.Blog:PostPlugin) < prototype(TYPO3.Neos.ContentTypes:Plugin)
-prototype(RobertLemke.Plugin.Blog:PostPlugin) {
-	package = 'RobertLemke.Plugin.Blog'
+prototype(TYPO3.Plugin.Blog:PostPlugin) < prototype(TYPO3.Neos.ContentTypes:Plugin)
+prototype(TYPO3.Plugin.Blog:PostPlugin) {
+	package = 'TYPO3.Plugin.Blog'
 	controller = 'Post'
 	action = 'index'
 }

@@ -1,22 +1,12 @@
 <?php
-namespace RobertLemke\Plugin\Blog\Controller;
+namespace TYPO3\Plugin\Blog\Controller;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Blog".                       *
+ * This script belongs to the FLOW3 package "TYPO3.Blog".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU General Public License as published by the Free   *
- * Software Foundation, either version 3 of the License, or (at your      *
- * option) any later version.                                             *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General      *
- * Public License for more details.                                       *
- *                                                                        *
- * You should have received a copy of the GNU General Public License      *
- * along with the script.                                                 *
- * If not, see http://www.gnu.org/licenses/gpl.html                       *
+ * the terms of the GNU Lesser General Public License, either version 3   *
+ * of the License, or (at your option) any later version.                 *
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
@@ -51,14 +41,14 @@ class PostController extends ActionController {
 	public function indexAction() {
 		$currentNode = $this->nodeRepository->getContext()->getCurrentNode();
 		$q = new \TYPO3\Eel\FlowQuery\FlowQuery(array($currentNode));
-		$posts = $q->children('[instanceof RobertLemke.Plugin.Blog:Post]');
+		$posts = $q->children('[instanceof TYPO3.Plugin.Blog:Post]');
 
 		$this->view->assign('posts', $posts);
 	}
 
 	public function createAction() {
 		$currentNode = $this->nodeRepository->getContext()->getCurrentNode();
-		$postNode = $currentNode->createNode(uniqid('post-'), $this->contentTypeManager->getContentType('RobertLemke.Plugin.Blog:Post'));
+		$postNode = $currentNode->createNode(uniqid('post-'), $this->contentTypeManager->getContentType('TYPO3.Plugin.Blog:Post'));
 		$mainRequest = $this->request->getMainRequest();
 		$mainUriBuilder = new \TYPO3\Flow\Mvc\Routing\UriBuilder();
 		$mainUriBuilder->setRequest($mainRequest);

@@ -4,9 +4,9 @@
 
 -
   name: 'Blog post comment creation'
-  uriPattern:    'robertlemke/plugin/blog/comments/create'
+  uriPattern:    'typo3/plugin/blog/comments/create'
   defaults:
-    '@package':    'RobertLemke.Plugin.Blog'
+    '@package':    'TYPO3.Plugin.Blog'
     '@controller': 'Comment'
     '@format': 'html'
     '@action': 'create'

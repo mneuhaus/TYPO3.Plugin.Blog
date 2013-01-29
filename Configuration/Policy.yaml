@@ -6,10 +6,10 @@
 
 resources:
   methods:
-    RobertLemke_Plugin_Blog_PostEditorMethods: 'method(RobertLemke\Plugin\Blog\Controller\PostController->(new|create|edit|update|delete)Action())'
-    RobertLemke_Plugin_Blog_CommentEditorMethods: 'method(RobertLemke\Plugin\Blog\Controller\CommentController->(edit|update|delete|markSpam|markHam)Action())'
+    TYPO3_Plugin_Blog_PostEditorMethods: 'method(TYPO3\Plugin\Blog\Controller\PostController->(new|create|edit|update|delete)Action())'
+    TYPO3_Plugin_Blog_CommentEditorMethods: 'method(TYPO3\Plugin\Blog\Controller\CommentController->(edit|update|delete|markSpam|markHam)Action())'
 acls:
   Editor:
     methods:
-      RobertLemke_Plugin_Blog_PostEditorMethods: GRANT
-      RobertLemke_Plugin_Blog_CommentEditorMethods: GRANT
+      TYPO3_Plugin_Blog_PostEditorMethods: GRANT
+      TYPO3_Plugin_Blog_CommentEditorMethods: GRANT

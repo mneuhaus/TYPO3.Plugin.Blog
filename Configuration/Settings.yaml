@@ -2,7 +2,7 @@
 # Settings Configuration for the Blog package                            #
 #                                                                        #
 
-RobertLemke:
+TYPO3:
   Plugin:
     Blog:
       notifications:
@@ -13,7 +13,7 @@ RobertLemke:
 TYPO3:
   TYPO3CR:
     contentTypes:
-      'RobertLemke.Plugin.Blog:Post':
+      'TYPO3.Plugin.Blog:Post':
         superTypes: ['TYPO3.Neos.ContentTypes:Folder']
         label: 'Blog Post'
         icon: 'Images/Icons/White/doc_empty_icon-16.png'
@@ -50,7 +50,7 @@ TYPO3:
             label: 'Tags'
             group: 'moreinfo'
             reloadOnChange: false
-      'RobertLemke.Plugin.Blog:Comment':
+      'TYPO3.Plugin.Blog:Comment':
         superTypes: ['TYPO3.Neos.ContentTypes:ContentObject']
         group: 'General'
         label: 'Blog Comment'
@@ -82,7 +82,7 @@ TYPO3:
             default: '<p>Your Comment Here</p>'
         inlineEditableProperties: ['text']
 
-      'RobertLemke.Plugin.Blog:PostPlugin':
+      'TYPO3.Plugin.Blog:PostPlugin':
         superTypes: ['TYPO3.Neos.ContentTypes:Plugin']
         label: 'Blog Post Overview'
         group: 'Plugins'

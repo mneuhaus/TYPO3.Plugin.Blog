@@ -1,27 +1,17 @@
 <?php
-namespace RobertLemke\Plugin\Blog\Controller;
+namespace TYPO3\Plugin\Blog\Controller;
 
 /*                                                                        *
- * This script belongs to the FLOW3 package "Blog".                       *
+ * This script belongs to the FLOW3 package "TYPO3.Blog".                 *
  *                                                                        *
  * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU General Public License as published by the Free   *
- * Software Foundation, either version 3 of the License, or (at your      *
- * option) any later version.                                             *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General      *
- * Public License for more details.                                       *
- *                                                                        *
- * You should have received a copy of the GNU General Public License      *
- * along with the script.                                                 *
- * If not, see http://www.gnu.org/licenses/gpl.html                       *
+ * the terms of the GNU Lesser General Public License, either version 3   *
+ * of the License, or (at your option) any later version.                 *
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use RobertLemke\Plugin\Blog\Domain\Model\Comment;
+use TYPO3\Plugin\Blog\Domain\Model\Comment;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use TYPO3\Fluid\Core\Widget\AbstractWidgetController;
@@ -42,11 +32,11 @@ class CommentController extends ActionController {
 	 * Creates a new comment
 	 *
 	 * @param \TYPO3\TYPO3CR\Domain\Model\NodeInterface $postNode The post node which will contain the new comment
-	 * @param \RobertLemke\Plugin\Blog\Domain\Model\Comment $newComment A fresh Comment object
+	 * @param \TYPO3\Plugin\Blog\Domain\Model\Comment $newComment A fresh Comment object
 	 * @return void
 	 */
 	public function createAction(NodeInterface $postNode, Comment $newComment) {
-		$commentContentType = $this->contentTypeManager->getContentType('RobertLemke.Plugin.Blog:Comment');
+		$commentContentType = $this->contentTypeManager->getContentType('TYPO3.Plugin.Blog:Comment');
 		$commentNode = $postNode->getNode('comments')->createNode(uniqid('comment'), $commentContentType);
 		$commentNode->setProperty('text', filter_var($newComment->getContent(), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
 		$commentNode->setProperty('author', $newComment->getAuthor());

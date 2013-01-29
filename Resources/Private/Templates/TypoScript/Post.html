@@ -1,6 +1,6 @@
 {namespace neos=TYPO3\Neos\ViewHelpers}
 {namespace ts=TYPO3\TypoScript\ViewHelpers}
-<article itemscope="" itemtype="http://schema.org/Article" class="robertlemke-plugin-blog" xmlns:f="http://www.w3.org/1999/html">
+<article itemscope="" itemtype="http://schema.org/Article" class="typo3-plugin-blog" xmlns:f="http://www.w3.org/1999/html">
 	<f:flashMessages class="flashmessages" />
 	<header>
 		<h1 itemprop="name headline">{title}</h1>
@@ -27,7 +27,7 @@
 		</f:if>
 		<h3><f:translate>Leave a reply</f:translate></h3>
 		<f:render partial="FormErrors" arguments="{for: 'newComment'}" />
-		<!--<![CDATA[<f:form action="create" controller="Comment" package="RobertLemke.Plugin.Blog" object="{newComment}" name="newComment" class="newcomment">
+		<!--<![CDATA[<f:form action="create" controller="Comment" package="TYPO3.Plugin.Blog" object="{newComment}" name="newComment" class="newcomment">
 			<f:form.hidden name="postNode" value="{node.path}" />
 			<label for="comment.author"><f:translate>Name <span class="required">*</span></f:translate></label>
 			<f:form.textfield id="comment.author" property="author" />
