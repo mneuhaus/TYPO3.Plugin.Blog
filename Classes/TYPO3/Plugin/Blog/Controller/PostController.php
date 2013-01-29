@@ -46,6 +46,9 @@ class PostController extends ActionController {
 		$this->view->assign('posts', $posts);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function createAction() {
 		$currentNode = $this->nodeRepository->getContext()->getCurrentNode();
 		$postNode = $currentNode->createNode(uniqid('post-'), $this->contentTypeManager->getContentType('TYPO3.Plugin.Blog:Post'));

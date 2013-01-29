@@ -16,6 +16,7 @@
 	<div itemprop="articleBody">
 		<ts:renderTypoScript path="main" />
 	</div>
+	<!--<![CDATA[
 	<hr />
 	<div id="comments" class="comments">
 		<f:if condition="{numberOfComments}">
@@ -27,7 +28,7 @@
 		</f:if>
 		<h3><f:translate>Leave a reply</f:translate></h3>
 		<f:render partial="FormErrors" arguments="{for: 'newComment'}" />
-		<!--<![CDATA[<f:form action="create" controller="Comment" package="TYPO3.Plugin.Blog" object="{newComment}" name="newComment" class="newcomment">
+		<f:form action="create" controller="Comment" package="TYPO3.Plugin.Blog" object="{newComment}" name="newComment" class="newcomment">
 			<f:form.hidden name="postNode" value="{node.path}" />
 			<label for="comment.author"><f:translate>Name <span class="required">*</span></f:translate></label>
 			<f:form.textfield id="comment.author" property="author" />
@@ -35,6 +36,7 @@
 			<f:form.textfield id="comment.emailaddress" property="emailAddress" />
 			<f:form.textarea id="comment.content" property="content" rows="10" cols="50"/>
 			<f:form.submit value="{f:translate(value: 'Submit', package: 'TYPO3.Flow')}" class="secondary button" />
-		</f:form>]]>-->
+		</f:form>
 	</div>
+	]]>-->
 </article>
