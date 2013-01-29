@@ -1,0 +1,12 @@
+prototype(TYPO3.Expose:Schema:TYPO3.Plugin.Blog:Post) < prototype(TYPO3.Expose:Schema) {
+}
+
+prototype(TYPO3.Expose:RecordList.List.Element).post {
+	@position = 'before node'
+	condition = ${q(item).is('[ instanceof TYPO3.Neos.ContentTypes:AbstractNode]')}
+	type = 'TYPO3.Plugin.Blog:Post.Element'
+}
+
+prototype(TYPO3.Plugin.Blog:Post.Element) < prototype(TYPO3.Expose:RecordList.List.DefaultElement) {
+	templatePath = 'resource://TYPO3.Plugin.Blog/Private/Elements/List/PostElement.html'
+}
