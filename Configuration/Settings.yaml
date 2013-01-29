@@ -10,7 +10,6 @@ TYPO3:
           email: ''
           name: 'Blog Admin'
 
-TYPO3:
   TYPO3CR:
     contentTypes:
       'TYPO3.Plugin.Blog:Post':
