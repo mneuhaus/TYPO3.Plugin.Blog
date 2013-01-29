@@ -40,10 +40,7 @@ class PostController extends ActionController {
 	 */
 	public function indexAction() {
 		$currentNode = $this->nodeRepository->getContext()->getCurrentNode();
-		$q = new \TYPO3\Eel\FlowQuery\FlowQuery(array($currentNode));
-		$posts = $q->children('[instanceof TYPO3.Plugin.Blog:Post]');
-
-		$this->view->assign('posts', $posts);
+		$this->view->assign('currentNode', $currentNode);
 	}
 
 	/**

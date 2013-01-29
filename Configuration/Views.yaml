@@ -1,0 +1,5 @@
+TYPO3:
+  Expose:
+    options:
+      typoScriptPathPatterns:
+        10_TYPO3.Plugin.Blog: resource://TYPO3.Plugin.Blog/Private/TypoScripts/

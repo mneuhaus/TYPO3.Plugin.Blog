@@ -1,29 +1,7 @@
 {namespace blog=TYPO3\Plugin\Blog\ViewHelpers}
 {namespace neos=TYPO3\Neos\ViewHelpers}
-<div class="typo3-plugin-blog">
-	<f:if condition="{posts}">
-		<f:then>
-			<ol class="posts">
-				<f:for each="{posts}" as="post">
-					<li class="post">
-						<h2>
-							<neos:link.node node="{post}">{post.properties.title}</neos:link.node>
-						</h2>
-						<p class="content">
-							<neos:link.node node="{post}" class="invisible-link">
-								{post.primaryChildNode.primaryChildNode.properties.text -> f:format.raw() -> blog:readMore()}
-							</neos:link.node> <neos:link.node node="{post}" class="read-more"><f:translate>Read more</f:translate></neos:link.node>
-						</p>
-					</li>
-					<hr/>
-				</f:for>
-			</ol>
-		</f:then>
-		<f:else>
-			<p><f:translate>This blog currently doesn't contain any posts.</f:translate>
-		</p>
-		</f:else>
-	</f:if>
-
+{namespace expose=TYPO3\Expose\ViewHelpers}
+<div class="robertlemke-plugin-blog">
+	<expose:render.action controller="ContentList" type="TYPO3.Plugin.Blog:Post" arguments="{selectedFolderNode: currentNode.path}" />
 	<f:security.ifAuthenticated><f:form controller="Post" action="create"><f:form.submit class="button" value="Create new post" /></f:form></f:security.ifAuthenticated>
 </div>
