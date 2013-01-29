@@ -28,6 +28,12 @@ class Notification {
 
 	/**
 	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Package\PackageManagerInterface
+	 */
+	protected $packageManager;
+
+	/**
+	 * @Flow\Inject
 	 * @var \TYPO3\Flow\Log\SystemLoggerInterface
 	 */
 	protected $systemLogger;
@@ -48,7 +54,11 @@ class Notification {
 	 * @return void
 	 */
 	public function sendNewCommentNotification(NodeInterface $commentNode, NodeInterface $postNode) {
-		if ($this->settings['notifications']['to']['email'] === '') {
+		if (!isset($this->settings['notifications']['to']['email']) || $this->settings['notifications']['to']['email'] === '') {
+			return;
+		}
+		if (!$this->packageManager->isPackageActive('TYPO3.SwiftMailer')) {
+			$this->systemLogger->logException(new \TYPO3\Flow\Exception('the package "TYPO3.SwiftMailer" is required to send notifications!', 1359473932));
 			return;
 		}
 

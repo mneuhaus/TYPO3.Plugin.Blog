@@ -5,8 +5,10 @@
 	"version":"1.0.1",
 	"require":{
 		"typo3/flow":"*",
-		"typo3/swiftmailer": "*",
 		"typo3/neos":"dev-master"
+	},
+	"suggest":{
+		"typo3/swiftmailer":"Allows sending notification emails on new comments"
 	},
 	"autoload":{
 		"psr-0":{
