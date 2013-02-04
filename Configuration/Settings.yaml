@@ -10,6 +10,19 @@ TYPO3:
           email: ''
           name: 'Blog Admin'
 
+  Neos:
+    Plugins:
+      'TYPO3.Plugin.Blog:PostPlugin':
+        label: 'Blog'
+        pluginViews:
+          'PostList':
+            label: 'Post List'
+            controllerActions:
+              '\TYPO3\Plugin\Blog\Controller\PostController': ['index']
+          'PostDetails':
+            label: 'Post Details'
+            controllerActions:
+              '\TYPO3\Plugin\Blog\Controller\PostController': ['show']
   TYPO3CR:
     contentTypes:
       'TYPO3.Plugin.Blog:Post':
@@ -87,3 +100,22 @@ TYPO3:
         label: 'Blog Post Overview'
         group: 'Plugins'
         showUneditableOverlay: false
+        configurationProcessors:
+          - '\TYPO3\Plugin\Blog\OptionsProvider\PluginConfigurationProcessor'
+        properties:
+          test:
+            type: enum
+            group: 'pluginSettings'
+            default: '50-50'
+            priority: 100
+            optionsProvider: '\TYPO3\Plugin\Blog\OptionsProvider\TestOptionsProvider'
+            options:
+              values:
+                '50-50':
+                  label: '50% / 50%'
+                '75-25':
+                  label: '75% / 25%'
+            reloadOnChange: true
+        groups:
+          pluginSettings:
+            label: 'Plugin Settings'

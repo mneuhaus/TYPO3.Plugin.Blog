@@ -43,7 +43,7 @@ class BlogCommandController extends \TYPO3\Flow\Cli\CommandController {
 	 * Import Posts from an Feed
 	 *
 	 * Use this command to import an RSS feed into NEOS
-	 * 
+	 *
 	 * ./flow blog:import --pagePath '/sites/neosdemotypo3org/homepage/blog' --url 'http://www.planetflow3.com/rss.xml'
 	 *
 	 * @param string $url This argument is required
@@ -69,11 +69,20 @@ class BlogCommandController extends \TYPO3\Flow\Cli\CommandController {
 			$postNode = $blogNode->createNode(uniqid('post-'), $this->contentTypeManager->getContentType('TYPO3.Plugin.Blog:Post'));
 			$postNode->setProperty('datePublished', new \DateTime($item->pubDate));
 			$postNode->setProperty('title', strval($item->title));
+			$postNode->setProperty('description', strval($item->description));
+			$postNode->setProperty('permalink', strval($item->link));
 
 			$sectionNode = $postNode->createNode('main', $this->contentTypeManager->getContentType('TYPO3.Neos.ContentTypes:Section'));
 
 			$htmlNode = $sectionNode->createNode(uniqid('postContent-'), $this->contentTypeManager->getContentType('TYPO3.Neos.ContentTypes:Html'));
-			$htmlNode->setProperty('source', strval($item->description));
+
+			$content = $item->children('http://purl.org/rss/1.0/modules/content/');
+			if (strlen($content->encoded) > 0) {
+				$content = $content->encoded;
+			} else {
+				$content = $item->description;
+			}
+			$htmlNode->setProperty('source', strval($content));
 		}
 	}
 

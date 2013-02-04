@@ -7,8 +7,15 @@
 		<neos:link.node node="{item}">{item.properties.title -> f:format.raw()}</neos:link.node>
 	</h2>
 	<p class="content">
-		{item.primaryChildNode.primaryChildNode.properties.text -> f:format.raw() -> blog:readMore()}
-		{item.primaryChildNode.primaryChildNode.properties.source -> f:format.raw() -> blog:readMore()}
+		<f:if condition="{item.properties.description}">
+			<f:then>
+				{item.properties.description}
+			</f:then>
+			<f:else>
+				{item.primaryChildNode.primaryChildNode.properties.text -> f:format.raw() -> blog:readMore()}
+				{item.primaryChildNode.primaryChildNode.properties.source -> f:format.raw() -> blog:readMore()}
+			</f:else>
+		</f:if>
 		<br />
 		<neos:link.node node="{item}" class="read-more"><f:translate>Read more</f:translate></neos:link.node>
 	</p>

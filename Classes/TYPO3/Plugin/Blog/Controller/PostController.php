@@ -43,6 +43,10 @@ class PostController extends ActionController {
 		$this->view->assign('currentNode', $currentNode);
 	}
 
+	public function showAction() {
+		return 'Some Details DAWG';
+	}
+
 	/**
 	 * @return void
 	 */
